@@ -1,5 +1,6 @@
 from flask import Flask, request
 import requests
+import json
 app = Flask(__name__)
 
 @app.route('/')
@@ -15,30 +16,33 @@ def demo():
 def pub(name):
   par = {
     'query': name,
-    'size': 20,
+    'size': 5,
     'sort': 'relevance',
     'offset': 0
   }
   res = requests.get('http://api.aminer.org/api/search/pub', params = par)
-  print(res.json())
+  jsonRes = json.dumps(res.json(), indent=2, separators=(',', ': '))
+  print(jsonRes)
   return res.text
   
 @app.route('/people/<name>')
 def people(name):
   par = {
     'query': name,
-    'size': 20,
+    'size': 5,
     'sort': 'relevance',
     'offset': 0
   }
   res = requests.get('http://api.aminer.org/api/search/people', params = par)
-  print(res.json())
+  jsonRes = json.dumps(res.json(), indent=2, separators=(',', ': '))
+  print(jsonRes)
   return res.text
   
 @app.route('/entity/<name>')
 def entity(name):
   res = requests.get('http://api.aminer.org/api/search/entity/' + name)
-  print(res.json())
+  jsonRes = json.dumps(res.json(), indent=2, separators=(',', ': '))
+  print(jsonRes)
   return res.text
   
 if __name__ == '__main__':

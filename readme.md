@@ -28,13 +28,44 @@ im.clear([callback]);
 收到前端的请求后，后台向Aminer发出GET请求，调用AMiner的API，然后将结果返回前台页面(分为概要信息和详细信息)。  
 可以在每次请求时，先将这批数据存在服务器，那么请求详细数据的时候就不需要再次请求AMiner，速度会快一些。
 ####接口(待定)
-#####返回概要信息
-论文：/pub/&lt;name&gt;  
-人物：/people/&lt;name&gt;  
-概念：/entity/&lt;name&gt;  
+#####返回概要信息API
+* 论文：/pub/&lt;name&gt;  
+* 人物：/people/&lt;name&gt;  
+* 概念：/entity/&lt;name&gt;  
+
+返回json格式的数据  
+
+#####返回详细信息API
+* 论文：/pub/&lt;name&gt;/detail  
+* 人物：/people/&lt;name&gt;/detail  
+* 概念：/entity/&lt;name&gt;/detail  
+
 返回json格式的数据
-#####返回详细信息
-论文：/pub/&lt;name&gt;/detail  
-人物：/people/&lt;name&gt;/detail  
-概念：/entity/&lt;name&gt;/detail  
-返回json格式的数据
+
+#####json数据信息
+* 论文：  
+概要：title, (title_zh), authors, venue, year, n_citation  
+详细：abstract, (abstract_zh)
+
+* 人物：  
+概要：name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation  
+详细：similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}  
+contact example:  
+>     "contact": {
+        "position": "Associate Professor",
+        "phone": "+8610-62788788-20 ",
+        "email": "jietang@tsinghua.edu.cn",
+        "fax": "+8610-62794365",
+        "affiliation": "Department of Computer Science and Technology, Tsinghua University, China",
+        "address": "FIT 1-308, Tsinghua University, Beijing 100084, China PR",
+        "interest": "",
+        "edu": "2006, Tsinghua University, Ph.D..",
+        "work": "2011",
+        "bio": "I am an associate professor in Department of Computer Science and Technology of Tsinghua. I obtained my Ph.D. in DCST of Tsinghua University in 2006. I became ACM Professional member in 2006 and IEEE member in 2007. My research interests include social network analysis, data mining, machine learning, and semantic web. \n\nI have been visiting scholar at Cornell University (working with John Hopcroft), University of Illinois at Urbana-Champaign (short term, working with Jiawei Han), Chinese University of Hong Kong (working with Jeffrey Yu), and Hong Kong University of Science and Technology (working with Qiong Luo). During my graduate career, I have been an intern at NLC group of Microsoft Research Asia from 2004 to 2005. I also have attended the internship program of IBM China Research Lab in 2004.",
+        "homepage": "http://keg.cs.tsinghua.edu.cn/jietang/",
+        "avatar": ""
+      },
+      
+* 概念：  
+概要：title->{ch, en}, image[0]  
+详细：url(?), image[], abstract->[ch, en], super_topic[]->{ch, en}, related_item[]->{image, title->{ch, en}}, type(tag)[]->{ch, en} 
