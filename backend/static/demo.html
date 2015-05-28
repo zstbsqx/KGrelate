@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <table>
+      <tr>
+        <td>pub</td>
+        <td><input type="text" id="pub"></td>
+      </tr>
+      <tr>
+        <td>people</td>
+        <td><input type="text" id="people"></td>
+      </tr>
+      <tr>
+        <td>entity</td>
+        <td><input type="text" id="entity"></td>
+      </tr>
+    </table>
+    <br>
+    <div id="res">result here</div>
+  </div>
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      document.getElementById('res').innerHTML = xhr.responseText;
+    }
+    function request(url, name) {
+      xhr.open('GET', '/' + url + '/'+ name, true);
+      xhr.send();
+    }
+    document.getElementById('pub').addEventListener('keydown', function (ev) {
+      if(ev.keyCode === 13) //enter
+      {
+        if(ev.target.value !== "") {
+          request('pub', ev.target.value)
+        }
+      }
+    });
+    document.getElementById('people').addEventListener('keydown', function (ev) {
+      if(ev.keyCode === 13) //enter
+      {
+        if(ev.target.value !== "") {
+          request('people', ev.target.value)
+        }
+      }
+    });
+    document.getElementById('entity').addEventListener('keydown', function (ev) {
+      if(ev.keyCode === 13) //enter
+      {
+        if(ev.target.value !== "") {
+          request('entity', ev.target.value)
+        }
+      }
+    });
+  </script>
+</body>
+</html>
