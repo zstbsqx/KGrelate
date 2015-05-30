@@ -4,5 +4,5 @@
 可以使用在线网站http://jsonviewer.stack.hu/
 
 ##进度
-//create branch tux for commit
+* 初步完成后台的六个接口的设计与实现，后续跟进测试与完善
 ##备忘
