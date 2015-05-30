@@ -48,8 +48,8 @@ im.clear([callback]);
 详细：abstract, (abstract_zh)
 
 * 人物：  
-概要：name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id
-详细：similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}, id
+概要：name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id      
+详细：similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}, id   
 注：由于可能返回多个人物结果，故将结果封装成一个list内部每一个人物封装成一个dict，接口如上，另外，在初步设计外添加一个新字段id，目的是设置人物的为一标识，以便调用similarPersons和contact进行区分和匹配
 
 contact example:  
