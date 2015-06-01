@@ -9,13 +9,13 @@
     <!-- Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user's browser -->
   </head>
   <body>
-    <div id="input" class="left" style="height:100%;width:50%;">LEFT PART</div>
+    <div id="left" class="left" style="height:100%;width:50%;">LEFT PART</div>
     <div id="relateinfo" class="right" style="height:100%;width:50%;">
       <div id="relate_people">
         Relate people:
-        <ul class="no-bullet accordion">
+        <ul class="no-bullet">
           <li>
-            <div class="row">
+            <div class="summary row">
               <div class="photo small-2 columns">
                 <img class="th" src="http://static.aminer.org/upload/avatar/1852/642/1365/53f42f36dabfaedce54dcd0c.jpeg">
               </div>
@@ -57,10 +57,10 @@
                 </div>
               </div>
             </div>
-            <ul class="accordion " data-accordion>
+            <ul class="detail accordion" data-accordion>
               <li class="accordion-navigation">
                 <a href="#detail">click for more details</a>
-                <div id="detail" class="content">
+                <div id="detail" class="content panel">
                   <div class=similarpersons>
                     contact:
                     <div class="contact">
@@ -103,10 +103,9 @@
                 </div>
               </li>
             </ul>
-            <!-- Add dropdown here to view details -->
           </li>
           <li>
-            <div class="row">
+            <div class="summary row">
               <div class="photo small-2 columns">
                 <img class="th" src="http://static.aminer.org/upload/avatar/1852/642/1365/53f42f36dabfaedce54dcd0c.jpeg">
               </div>
@@ -148,7 +147,7 @@
                 </div>
               </div>
             </div>
-            <ul class="accordion " data-accordion>
+            <ul class="detail accordion" data-accordion>
               <li class="accordion-navigation">
                 <a href="#detail">click for more details</a>
                 <div id="detail" class="content">
@@ -194,7 +193,6 @@
                 </div>
               </li>
             </ul>
-            <!-- Add dropdown here to view details -->
           </li>
         </ul>
       </div>
