@@ -29,7 +29,7 @@ im.clear([callback]);
 可以在每次请求时，先将这批数据存在服务器，那么请求详细数据的时候就不需要再次请求AMiner，速度会快一些。
 ####接口(待定)
 #####返回概要信息API
-* 论文：/pub/&lt;name&gt;  
+* 论文：/pubs/&lt;name&gt;  
 * 人物：/people/&lt;name&gt;  
 * 概念：/entity/&lt;name&gt;  
 

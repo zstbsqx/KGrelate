@@ -1,19 +1,27 @@
 #-*-coding:utf-8-*- 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 import json
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-  usageList = ['usage:', '/pub/*', '/people/*', '/entity/*', '', 'demo:', '/demo']
+  usageList = ['api:', '/pubs/*', '/people/*', '/entity/*', '', 'demos:', '/demo', '/staticdemo', '/apidemo']
   return '<br>'.join(usageList)
 
 @app.route('/demo')
 def demo():
-  return app.send_static_file('apidemo.html')
+  return render_template('demo.html')
 
-@app.route('/pub/<name>')
+@app.route('/staticdemo')
+def staticdemo():
+  return render_template('static_demo.html')
+
+@app.route('/apidemo')
+def apidemo():
+  return render_template('apidemo.html')
+
+@app.route('/pubs/<name>')
 def pub(name):
   par = {
     'query': name,
