@@ -4,14 +4,14 @@ import requests
 import json
 app = Flask(__name__)
 
-@app.route('/')
-def hello():
+@app.route('/')  #route
+def hello():  #define a function
   usageList = ['api:', '/pubs/*', '/people/*', '/entity/*', '', 'demos:', '/demo', '/staticdemo', '/apidemo']
-  return '<br>'.join(usageList)
+  return '<br>'.join(usageList)  #return response
 
-@app.route('/demo')
+@app.route('/demo') #route
 def demo():
-  return render_template('demo.html')
+  return render_template('demo.html')  #template files are stored in /templates folder, css/js files are stored in static folders
 
 @app.route('/staticdemo')
 def staticdemo():
@@ -45,7 +45,7 @@ def pub(name):
   print jsonRes
   return jsonRes
 
-@app.route('/pub/<name>/detail')
+@app.route('/pubs/<name>/detail')
 def pubDetail(name):
   par = {
     'query': name,
