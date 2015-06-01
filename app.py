@@ -11,7 +11,7 @@ def hello():
 
 @app.route('/demo')
 def demo():
-  return app.send_static_file('demo.html')
+  return app.send_static_file('apidemo.html')
 
 @app.route('/pub/<name>')
 def pub(name):
