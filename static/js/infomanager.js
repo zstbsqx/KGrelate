@@ -87,7 +87,7 @@ var renderPerson = function(dom, data) {
                  + '</li></ul>');
   //TODO: change 'loading...' to detail content
   summary.append('<div class="photo small-2 columns">'
-                 + '<img class="th" src="' + data.image + '">'
+                 + '<img class="th" src="' + data.image || '/static/image/default.jpg' + '">'
                  + '</div>');
   var info = $('<div class="small-10 columns" />');
   var name = data.name;
