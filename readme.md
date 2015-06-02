@@ -27,29 +27,22 @@ im.clear([callback]);
 用flask框架搭建。  
 收到前端的请求后，后台向Aminer发出GET请求，调用AMiner的API，然后将结果返回前台页面(分为概要信息和详细信息)。  
 可以在每次请求时，先将这批数据存在服务器，那么请求详细数据的时候就不需要再次请求AMiner，速度会快一些。
-####接口(待定)
-#####返回概要信息API
-* 论文：/pub/&lt;name&gt;  
+####接口
+#####返回信息API
+* 论文：/pubs/&lt;name&gt;  
 * 人物：/people/&lt;name&gt;  
 * 概念：/entity/&lt;name&gt;  
 
 返回json格式的数据  
 
-#####返回详细信息API
-* 论文：/pub/&lt;name&gt;/detail  
-* 人物：/people/&lt;name&gt;/detail  
-* 概念：/entity/&lt;name&gt;/detail  
-
-返回json格式的数据
-
 #####json数据信息
 * 论文：  
-概要：title, (title_zh), authors, venue, year, n_citation  
-详细：abstract, (abstract_zh)
+title, (title_zh), authors, venue, year, n_citation, id, detail->{abstract, (abstract_zh)}  
 
 * 人物：  
-概要：name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id
-详细：similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}, id
+name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id,
+detail->{similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}}
+
 注：由于可能返回多个人物结果，故将结果封装成一个list内部每一个人物封装成一个dict，接口如上，另外，在初步设计外添加一个新字段id，目的是设置人物的为一标识，以便调用similarPersons和contact进行区分和匹配
 
 contact example:  
@@ -69,5 +62,5 @@ contact example:
       },
       
 * 概念：  
-概要：title->{ch, en}, image[0]  
-详细：url(?), image[], abstract->[ch, en], super_topic[]->{ch, en}, related_item[]->{image, title->{ch, en}}, type(tag)[]->{ch, en} 
+title->{ch, en}, image[0], 
+detail->{url(?), image[], abstract->[ch, en], super_topic[]->{ch, en}, related_item[]->{image, title->{ch, en}}, type(tag)[]->{ch, en}}

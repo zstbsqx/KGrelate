@@ -1,19 +1,27 @@
 #-*-coding:utf-8-*- 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 import json
 app = Flask(__name__)
 
-@app.route('/')
-def hello():
-  usageList = ['usage:', '/pub/*', '/people/*', '/entity/*', '', 'demo:', '/demo']
-  return '<br>'.join(usageList)
+@app.route('/')  #route
+def hello():  #define a function
+  usageList = ['api:', '/pubs/*', '/people/*', '/entity/*', '', 'demos:', '/demo', '/staticdemo', '/apidemo']
+  return '<br>'.join(usageList)  #return response
 
-@app.route('/demo')
+@app.route('/demo') #route
 def demo():
-  return app.send_static_file('demo.html')
+  return render_template('demo.html')  #template files are stored in /templates folder, css/js files are stored in static folders
 
-@app.route('/pub/<name>')
+@app.route('/staticdemo')
+def staticdemo():
+  return render_template('static_demo.html')
+
+@app.route('/apidemo')
+def apidemo():
+  return render_template('apidemo.html')
+
+@app.route('/pubs/<name>')
 def pub(name):
   par = {
     'query': name,
@@ -41,7 +49,6 @@ def pub(name):
   jsonRes = json.dumps(res, indent=2, separators=(',', ': '))
   print jsonRes
   return jsonRes
-
 
 @app.route('/people/<name>')
 def people(name):

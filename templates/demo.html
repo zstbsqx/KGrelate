@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="static/css/foundation.css" />
+  <script src="static/js/vendor/modernizr.js"></script>
+  <!-- Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user's browser -->
+</head>
+<body>
+  <div id="left" class="left"  style="height:100%;width:50%;">
+    LEFT PART
+    <div style="width:100%;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+    <table>
+      <tr>
+        <td>pubs:</td>
+        <td><input type="text" onkeypress="loadPubs(event)"></td>
+      </tr>
+      <tr>
+        <td>people:</td>
+        <td><input type="text" onkeypress="loadPeople(event)"></td>
+      </tr>
+    </table>
+  </div>
+  <div id="relateinfo" class="right" style="height:100%;width:50%;"></div>
+  <script src="static/js/vendor/jquery.js"></script>
+  <script src="static/js/foundation/foundation.js"></script>
+  <script src="static/js/foundation/foundation.accordion.js"></script>
+  <script src="static/js/infomanager.js"></script>
+  <script>
+    var im = new InfoManager('relateinfo');
+    var loadPubs = function (ev) {
+      var code = ev.keyCode || ev.which;
+      if(code == 13 && ev.target.value) {
+        im.loadPubs(ev.target.value);
+        ev.target.value = '';
+      }
+    }
+    var loadPeople = function (ev) {
+      var code = ev.keyCode || ev.which;
+      if(code == 13 && ev.target.value) {
+        im.loadPeople(ev.target.value);
+        ev.target.value = '';
+      }
+    }
+    $(document).foundation();
+  </script>
+</body>
+</html>
