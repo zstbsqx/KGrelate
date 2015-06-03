@@ -15,9 +15,9 @@ var InfoManager = function (id) {
   };
 };
 
-InfoManager.load = function(name, options) {
-  this.loadPubs();
-  this.loadPeople();
+InfoManager.prototype.load = function(name, options) {
+  this.loadPubs(name, options);
+  this.loadPeople(name, options);
 };
 
 // $.get status: ("success", "notmodified", "nocontent", "error", "timeout", "abort", or "parsererror")
@@ -30,7 +30,6 @@ InfoManager.prototype.loadPubs = function (name, options) { //Arg options are fo
   var dom = this.dom;
   $.get('/pubs/' + name, function (data, status) {
     if(status === 'success') {
-      dom.empty();
       renderLayout(dom, 'pubs', data);
     } else {
       alert('load pubs failed, status:  ' + status);
@@ -49,7 +48,6 @@ InfoManager.prototype.loadPeople = function (name, options) {
   var dom = this.dom;
   $.get('/people/' + name, function (data, status) {
     if(status === 'success') {
-      dom.empty();
       renderLayout(dom, 'people', data);
     } else {
       alert('load people failed, status:  ' + status);
@@ -65,21 +63,25 @@ InfoManager.prototype.loadEntity = function (name, options) {
 };
 
 /*
-  dom is a <li /> elem.
-  data format:
-    title, (title_zh), authors, venue, year, n_citation, id, 
-    detail->{abstract, (abstract_zh)}  
+dom is a <li /> elem.
+data format:
+  title, (title_zh), authors, venue, year, n_citation, id, 
+  detail->{abstract, (abstract_zh)}  
 */
 
 var renderPub = function (dom, data) {
-  var summary = $('<div class="summary row" />'),
-      detail = $('<ul class="detail accordion" data-accordion>');
+  var id = 'paperdetail_' + data.id;
+  var title = data.title;
+  if(data.title_zh) {
+    title += ' (' + data.title_zh + ')';
+  }
+  dom.append('<div class="title">' + title + '</div>')
 };
 
 /*
-  data format:
-    name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id,
-    detail->{similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}}
+data format:
+  name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id,
+  detail->{similarPersons->{name, image}, contact->{position, phone, email, fax, affiliation, address, interest, edu, work, bio, homepage, avatar}}
 */
 
 var renderPerson = function(dom, data) {
@@ -127,7 +129,6 @@ var renderPerson = function(dom, data) {
                  + '<div class="similarPersons">'
                  + '<div>similar persons:</div>'
                  + similarPersonList
-                 + '</div>'
                  + '</div></li></ul>');
   //TODO: change 'loading...' to detail content
   summary.append('<div class="photo small-2 columns">'
@@ -136,27 +137,25 @@ var renderPerson = function(dom, data) {
   var info = $('<div class="small-10 columns" />');
   var name = data.name;
   if(data.name_zh) {
-    name += '(' + data.name_zh + ')';
+    name += ' (' + data.name_zh + ')';
   }
   info.append('<div class="name">' + name + '</div>')
   var org = data.org;
   if(data.org_zh) {
-    org += '(' + data.org_zh + ')';
+    org += ' (' + data.org_zh + ')';
   }
   info.append('<div class="org">' + org + '</div>')
   //  if(data.contact.position) {
   //    info.append('<div class="position">' + data.contact.position + '</div>');
   //  }
   var pubinfo = $('<div class="pubinfo" />');
-  pubinfo.append('pubinfo:');
-  pubinfo.append('<span class="label">h_index : ' + data.h_index + '</span>');
-  pubinfo.append('<span class="label">n_pubs : ' + data.n_pubs + '</span>');
-  pubinfo.append('<span class="label">n_citation : ' + data.n_citation + '</span>');
+  pubinfo.append('<span class="hindex label">h_index : ' + data.h_index + '</span>');
+  pubinfo.append('<span class="npubs label">n_pubs : ' + data.n_pubs + '</span>');
+  pubinfo.append('<span class="ncitation label">n_citation : ' + data.n_citation + '</span>');
   info.append(pubinfo);
   var tags = $('<div class="tags" />');
-  tags.append('tags:');
   for(var i in data.tags) {
-    tags.append('<span class="label tag">' + data.tags[i] +'</span>');
+    tags.append('<span class="tag label">' + data.tags[i] +'</span>');
   }
   info.append(tags);
   summary.append(info);
@@ -165,20 +164,24 @@ var renderPerson = function(dom, data) {
   $(document).foundation();
 };
 
-//var renderEntity = function(item, data) {
-//  console.log('do not need to implement');
-//};
+/*
+var renderEntity = function(item, data) {
+  console.log('do not need to implement');
+};
+*/
 
 //type: pubs/people/entity
 var renderLayout = function(dom, type, data) {
-  console.log('renderlayout:\ntype: ' + type + '\ntarget dom: ' + dom);
+  console.log('renderlayout:\ntype: ' + type + '\nsize: ' + data.length);
   var id = 'relate_' + type;
   var main = dom.children('#' + id);
   if(main.length === 0) {
+    console.log('new panel');
     main = $('<div id="' + id+ '" />');
     dom.prepend(main);
     console.log('new main')
   } else {
+    console.log('refreshing');
     main.empty();
   }
   main.append('<div>Relate ' + type + ':</div>');

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')  #route
 def hello():  #define a function
-  usageList = ['api:', '/pubs/*', '/people/*', '/entity/*', '', 'demos:', '/demo', '/staticdemo', '/apidemo']
+  usageList = ['api:', '/pubs/*', '/people/*', '/entity/*', '', 'demos:', '/demo', '/staticdemo', '/apidemo', '/graphdemo']
   return '<br>'.join(usageList)  #return response
 
 @app.route('/demo') #route
@@ -20,6 +20,10 @@ def staticdemo():
 @app.route('/apidemo')
 def apidemo():
   return render_template('apidemo.html')
+
+@app.route('/graphdemo')
+def graphdemo():
+  return render_template('graph.html')
 
 @app.route('/pubs/<name>')
 def pub(name):
