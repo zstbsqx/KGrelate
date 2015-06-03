@@ -40,8 +40,11 @@ def pub(name):
     paper["venue"] = k["venue"] if "venue" in k else None
     paper["year"] = k["year"] if "year" in k else None
     paper["n_citation"] = k["n_citation"] if "n_citation" in k else None
+    paper["id"] = k["id"] if "id" in k else None
+    paper["url"] = k["url"] if "url" in k else None
     # detail
     detail = {}
+    detail["keywords"] = k["keywords"] if "keywords" in k else None
     detail["abstract"] = k["abstract"] if "abstract" in k else None
     detail["abstract_zh"] = k["abstract_zh"] if "abstract_zh" in k else None
     paper["detail"] = detail

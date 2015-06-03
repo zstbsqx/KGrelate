@@ -40,7 +40,8 @@ im.dom.empty();
 
 #####json数据信息
 * 论文：  
-title, (title_zh), authors, venue, year, n_citation, id, detail->{abstract, (abstract_zh)}  
+title, (title_zh), authors, venue, year, n_citation, keywords, id, url, 
+detail->{abstract, (abstract_zh)}  
 
 * 人物：  
 name, (name_zh), image, org, (org_zh), tags, h_index, n_pubs, n_citation, id,
