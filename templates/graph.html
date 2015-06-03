@@ -1,0 +1,158 @@
+<html class="no-js" lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowlege Graph</title>
+    <link rel="stylesheet" href="static/css/foundation.css" />
+    <link rel="stylesheet" href="static/css/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="static/css/app.css">
+    <script src="static/js/vendor/modernizr.js"></script>
+
+    <script src="static/js/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="static/js/bower_components/paper-button/paper-button.html">
+  </head>
+
+  <body>
+	<div class="fixed">
+    	<nav class="top-bar" data-topbar role="navigation">
+    	  <ul class="title-area">
+    	     <img id="logo" src="static/img/AMiner.png" style="height:2.7rem;margin-left:8rem"/>
+    	  </ul>
+
+    	  <section class="top-bar-section">
+    	    <ul class="right" style="margin-right:8rem; width:25rem">
+    			<form id="queryform" action="#" method="post" onsubmit="return false;">
+    			    <div class="row collapse postfix-radius">
+    					<div class = "small-9 columns">
+    						<input type="text" id="text_search" placeholder="" />
+    					</div>
+    					<div class = "small-2 columns">
+    						<button class="button expand">
+    							<paper-ripple class="style-scope paper-button">
+    						    	<div id="background" class="style-scope paper-ripple" style="opacity: 0.000736799999140197;"></div>
+    						    	<div id="waves" class="style-scope paper-ripple"></div>
+    						  	</paper-ripple>
+        						<i class="fi-magnifying-glass" style="padding-top:0.4375rem"></i>
+    						</button>
+    					</div>
+                        <div class="small-1 columns">
+                            <button class="button expand" id="fullscreen">
+                                <paper-ripple class="style-scope paper-button">
+                                    <div id="background" class="style-scope paper-ripple" style="opacity: 0.000736799999140197;"></div>
+                                    <div id="waves" class="style-scope paper-ripple"></div>
+                                </paper-ripple>
+                                F
+                            </button>
+                        </div>
+    				</div>
+    			</form>
+    	    </ul>
+    	  </section>
+    	</nav>
+	</div>
+
+    <div id="max_view" style="margin-top:0rem; display: none;" width="100%" height="100%">
+        <!-- for maximum the iframe -->
+    </div>
+
+	<div id="normal_view" class="row" style="margin-top:5rem">
+		<div class = "small-7 columns">
+
+			<div class="row">
+				<button id="testcase1" class="button expand">Good Luck</button>
+			<ul id="search_list" class="accordion" data-accordion>
+			  
+              <li class="accordion-navigation" style="margin-bottom:1rem !important">
+			    <a href="#item1" style="padding:0rem">
+			    	<paper-material elevation=2 style="padding:1rem">	
+						<paper-ripple>
+						   <div id="background" class="style-scope paper-ripple" style="opacity: 0.00356479999609291;"></div>
+						   <div id="waves" class="style-scope paper-ripple"></div>
+						</paper-ripple>
+				    	Accordion 1
+				    </paper-material>
+			 	</a>
+			    <div id="item1" class="content" style="padding:0rem">
+				    <paper-material elevation=2 style="padding:1rem">			      
+				    Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				    </paper-material>
+			    </div>
+			  </li>
+
+              <li class="accordion-navigation" style="margin-bottom:1rem !important">
+			    <a href="#item2" style="padding:0rem">
+			    	<paper-material elevation=2 style="padding:1rem">	
+						<paper-ripple>
+						   <div id="background" class="style-scope paper-ripple" style="opacity: 0.00356479999609291;"></div>
+						   <div id="waves" class="style-scope paper-ripple"></div>
+						</paper-ripple>
+				    	Accordion 2
+				    </paper-material>
+			 	</a>
+			    <div id="item2" class="content" style="padding:0rem">
+				    <paper-material elevation=2 style="padding:1rem">			      
+				    Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				    </paper-material>
+			    </div>
+			  </li>
+
+              <li class="accordion-navigation" style="margin-bottom:1rem !important">
+			    <a href="#item3" style="padding:0rem">
+			    	<paper-material elevation=2 style="padding:1rem">	
+						<paper-ripple>
+						   <div id="background" class="style-scope paper-ripple" style="opacity: 0.00356479999609291;"></div>
+						   <div id="waves" class="style-scope paper-ripple"></div>
+						</paper-ripple>
+				    	Accordion 3
+				    </paper-material>
+			 	</a>
+			    <div id="item3" class="content" style="padding:0rem">
+				    <paper-material elevation=2 style="padding:1rem">			      
+				    Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				    </paper-material>
+			    </div>
+			  </li>
+              
+			</ul>
+			</div>
+
+			<div class="row" style="margin-down:5rem">
+			<div class="pagination-centered">
+			  <ul class="pagination">
+			    <li class="arrow unavailable"><a href="">&laquo; Previous</a></li>
+			    <li class="current"><a href="">1</a></li>
+			    <li><a href="">2</a></li>
+			    <li><a href="">3</a></li>
+			    <li><a href="">4</a></li>
+			    <li class="unavailable"><a href="">&hellip;</a></li>
+			    <li><a href="">12</a></li>
+			    <li><a href="">13</a></li>
+			    <li class="arrow"><a href="">Next &raquo;</a></li>
+			  </ul>
+			</div>
+			</div>
+		</div>
+
+		<div class = "small-5 columns">
+			<div id="origin_pos" class="row">
+                <iframe id="graph_frame" class="graph_frame" src="static/chart.html" fullscreen="0" scrolling="no">
+					<!-- 知识图谱div-->
+				</iframe>
+			</div>
+			<div class="row">
+                <div id="relateinfo"></div>
+					<!-- 相关信息div-->
+			</div>
+		</div>
+	</div>
+
+    <script src="static/js/vendor/jquery.js"></script>
+    <script src="static/js/foundation.min.js"></script>
+    <script src="static/js/infomanager.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="static/js/ajax.js"></script>
+  </body>
+</html>

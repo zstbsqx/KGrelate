@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>echarts</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width:380px;height:285px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/chord',
+                'echarts/chart/force' // 使用力导向图
+            ],
+            function (ec) {
+                //$.post(url, {}, function(data){});
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                var option = {
+                    title : {
+                        text: '',
+                        //subtext: '数据来自人立方',
+                        x:'right',
+                        y:'bottom'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: '{a} : {b}'
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            restore : {show: true},
+                            magicType: {show: true, type: ['force', 'chord']},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    legend: {
+                        x: 'left',
+                        data:['室友','同学','狗']
+                    },
+                    series : [
+                        {
+                            type:'force',
+                            name : "人物关系",
+                            //ribbonType: false,
+                            categories : [
+                                {
+                                    name: '本人'
+                                },
+                                {
+                                    name: '室友'
+                                },
+                                {
+                                    name: '同学'
+                                },
+                                {
+                                    name:'狗'
+                                }
+                            ],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,
+                                        textStyle: {
+                                            color: '#333'
+                                        }
+                                    },
+                                    nodeStyle : {
+                                        brushType : 'both',
+                                        borderColor : 'rgba(255,215,0,0.4)',
+                                        borderWidth : 1
+                                    },
+                                    linkStyle: {
+                                        type: 'line',
+                                        width:3
+                                    }
+                                },
+                                emphasis: {
+                                    label: {
+                                        show: false
+                                        // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                                    },
+                                    nodeStyle : {
+                                        //r: 30
+                                    },
+                                    linkStyle : {}
+                                }
+                            },
+                            useWorker: false,
+                            minRadius : 15,
+                            maxRadius : 25,
+                            gravity: 1.5,
+                            scaling: 1.1,
+                            roam: true,
+                            nodes:[
+                                {category:0, name: '程季', value : 10, label: '程季\n（主要）'},
+                                {category:1, name: '裘捷中',value : 2},
+                                {category:1, name: '罗富文',value : 3},
+                                {category:1, name: '周琳钧',value : 3},
+                                {category:2, name: '王昊',value : 5},
+                                {category:2, name: '杨元',value : 8},
+                                {category:3, name: '红狗',value : 1},
+                            ],
+                            links : [
+                                {source : '程季', target : '裘捷中', weight : 10},
+                                {source : '程季', target : '罗富文', weight : 2},
+                                {source : '程季', target : '周琳钧', weight : 1},
+                                {source : '程季', target : '王昊', weight : 2},
+                                {source : '程季', target : '杨元', weight : 3,},
+                                {source : '程季', target : '红狗', weight : 1},
+                                {source : '王昊', target : '杨元', weight : 8, name: '室友'},
+                                {source : '王昊', target : '红狗', weight : 8, name: '室友'},
+                                {source : '杨元', target : '红狗', weight : 8, name: '室友'},
+                                {source : '周琳钧', target : '裘捷中', weight : 8, name: '室友'},
+                                {source : '周琳钧', target : '罗富文', weight : 8, name: '室友'},
+                                {source : '罗富文', target : '裘捷中', weight : 8, name: '室友'},
+                            ]
+                        }
+                    ]
+                };
+                
+                var ecConfig = require('echarts/config');
+                
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+                
+                function eConsole(param) {
+                    //丑陋的实现                   
+                    /*    .       .         
+                          \`-"'"-'/
+                           } 6 6 {       
+                          =.  Y  ,=   
+                        (""-'***`-"")  
+                         `-/     \-'            
+                          (  )-(  )===' 
+                           ""   ""         */
+                    if(typeof param.value == "number")
+                    {
+                        alert(param.name);
+                        //此处可以通过param.name获取到节点名字，然后通过ajax重载页面
+                    }
+                }
+                myChart.on(ecConfig.EVENT.CLICK, eConsole);
+                myChart.on(ecConfig.EVENT.DBLCLICK, eConsole);
+            }
+        );
+    </script>
+</body>
