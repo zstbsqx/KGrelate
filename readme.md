@@ -26,6 +26,38 @@ im.loadPeople(keyword[, options]);
 * 清空列表：  
 im.dom.empty();
 
+####关系网络数据结构
+* 结构定义
+ + 节点类别
+ eg: ['a', 'b', 'c']
+ + 节点数据
+ eg: [
+        {category:0, name: 'aaa', value : 10},
+        {category:1, name: 'bbb',value : 2},
+        {category:1, name: 'ccc',value : 3},
+        {category:1, name: 'ddd',value : 3},
+        {category:2, name: 'eee',value : 5},
+        {category:2, name: 'fff',value : 8},
+        {category:3, name: 'ggg',value : 1},
+    ]
+category表示所属类别，name表示节点名称，value表示节点权重（权重越大对应节点大小越大）
++ 边数据
+eg: [
+        {source : 'aaa', target : 'bbb', weight : 10},
+        {source : 'aaa', target : 'ccc', weight : 2},
+        {source : 'bbb', target : 'ccc', weight : 1},
+        {source : 'aaa', target : 'ddd', weight : 2},
+        {source : 'aaa', target : 'eee', weight : 3},
+        {source : 'aaa', target : 'fff', weight : 1},
+        {source : 'ccc', target : 'ddd', weight : 8, name: 'xxx'},
+        {source : 'ccc', target : 'eee', weight : 8, name: 'xxx'},
+        {source : 'ddd', target : 'eee', weight : 8, name: 'xxx'},
+        {source : 'ggg', target : 'aaa', weight : 8, name: 'xxx'},
+        {source : 'ggg', target : 'ccc', weight : 8, name: 'xxx'},
+        {source : 'ggg', target : 'ddd', weight : 8, name: 'xxx'},
+    ]
+source表示源节点，target表示目标节点，weight表示边权（边权越大连线越长），name表示关系说明，为可选参数。
+
 ###后台部分
 ####整体设计
 用flask框架搭建。  
