@@ -28,10 +28,10 @@ im.dom.empty();
 
 ####关系网络数据结构
 ```
-* 结构定义
- + 节点类别
+ 1. 节点类别
  eg: ['a', 'b', 'c']
- + 节点数据
+ 
+ 2. 节点数据
  eg: [
         {category:0, name: 'aaa', value : 10},
         {category:1, name: 'bbb',value : 2},
@@ -42,7 +42,8 @@ im.dom.empty();
         {category:3, name: 'ggg',value : 1},
     ]
 category表示所属类别，name表示节点名称，value表示节点权重（权重越大对应节点大小越大）
-+ 边数据
+
+3. 边数据
 eg: [
         {source : 'aaa', target : 'bbb', weight : 10},
         {source : 'aaa', target : 'ccc', weight : 2},
