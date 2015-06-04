@@ -27,6 +27,7 @@ im.loadPeople(keyword[, options]);
 im.dom.empty();
 
 ####关系网络数据结构
+```
 * 结构定义
  + 节点类别
  eg: ['a', 'b', 'c']
@@ -57,6 +58,7 @@ eg: [
         {source : 'ggg', target : 'ddd', weight : 8, name: 'xxx'},
     ]
 source表示源节点，target表示目标节点，weight表示边权（边权越大连线越长），name表示关系说明，为可选参数。
+```
 
 ###后台部分
 ####整体设计
