@@ -31,6 +31,8 @@ ul {
 
 .graph_frame {
 	border: none;
+    width: 480px;
+    height: 360px;
 }
 
 .right_title {
