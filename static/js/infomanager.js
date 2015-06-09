@@ -28,7 +28,7 @@ InfoManager.prototype.loadPubs = function (name, options) { //Arg options are fo
     return this;
   }
   var dom = this.dom;
-  $.get('/pubs/' + name, function (data, status) {
+  $.get('/api/relatedpubs/' + name, function (data, status) {
     if(status === 'success') {
       renderLayout(dom, 'pubs', data);
     } else {
@@ -46,7 +46,7 @@ InfoManager.prototype.loadPeople = function (name, options) {
     return this;
   }
   var dom = this.dom;
-  $.get('/people/' + name, function (data, status) {
+  $.get('/api/relatedpeople/' + name, function (data, status) {
     if(status === 'success') {
       renderLayout(dom, 'people', data);
     } else {

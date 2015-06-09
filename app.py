@@ -25,7 +25,7 @@ def apidemo():
 def graphdemo():
   return render_template('graph.html')
 
-@app.route('/pubs/<name>')
+@app.route('/api/relatedpubs/<name>')
 def pub(name):
   par = {
     'query': name,
@@ -57,7 +57,7 @@ def pub(name):
   print jsonRes
   return jsonRes
 
-@app.route('/people/<name>')
+@app.route('/api/relatedpeople/<name>')
 def people(name):
   par = {
     'query': name,
@@ -105,7 +105,7 @@ def people(name):
   return jsonRes
 
 
-@app.route('/entity/<name>')
+@app.route('/api/entity/<name>')
 def entity(name):
   raw = requests.get('http://api.aminer.org/api/search/entity/' + name)
   dic = raw.json()

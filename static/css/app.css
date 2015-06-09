@@ -1,0 +1,50 @@
+.accordion .accordion-navigation > a, .accordion dd > a {
+ /* background: #FFFFFF;	*/
+  color: #222222;
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.row {
+  margin: 0 auto;
+  max-width: 80rem;
+  width: 100%;
+}
+
+ul {
+  margin-left: 0rem;
+}
+
+#logo {
+	max-height: 320px;
+	max-width: 240px;
+	margin-bottom: 0px;
+}
+
+.vertical_line {
+	height: 10px;
+	border: none;
+	border-top: 3px solid skyblue;
+}
+
+.graph_frame {
+	border: none;
+}
+
+.right_title {
+	font-size: 32px;
+	float: right;
+	margin-top: 75px;
+	margin-bottom: 5px;
+}
+
+.top-bar{
+	background: rgba(66,141,199,.95)!important;
+  	box-shadow: 0 0 5px gray;
+}
+
+.row .row {
+  margin-left: 1rem;
+}
